@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills — Ariyan Ghosh</title>
+<meta name="description" content="Animated progress bars and tech stack grid for Ariyan Ghosh — derived from the technical skills on his resume.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+ --bg:#f4f6fc;--surface:#ffffff;--surface2:#eef1f9;--text:#0e1630;--muted:#5b6b8c;--border:#e2e8f0;
+ --nav-bg:rgba(255,255,255,.78);
+ --a1:#7c3aed;--a2:#4f46e5;--a3:#0891b2;
+ --grad:linear-gradient(120deg,#7c3aed 0%,#4f46e5 48%,#06b6d4 100%);
+ --grad-soft:linear-gradient(120deg,rgba(124,58,237,.10) 0%,rgba(6,182,212,.10) 100%);
+ --shadow:0 12px 32px rgba(20,30,70,.08);
+ --shadow-lg:0 28px 64px rgba(79,70,229,.22);
+ --r:18px;
+}
+html[data-theme=dark]{--bg:#0a0f1e;--surface:#111a31;--surface2:#182342;--text:#e8edf8;--muted:#9daac8;--border:#263252;--nav-bg:rgba(10,15,30,.78);--shadow:0 12px 32px rgba(0,0,0,.4)}
+html{scroll-behavior:smooth}
+body{font-family:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .4s,color .4s;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:rgba(124,58,237,.28)}
+h1,h2,h3,h4{font-family:"Space Grotesk","Inter",sans-serif;letter-spacing:-.01em}
+a{color:inherit;text-decoration:none}
+.container{width:min(1140px,92%);margin:0 auto}
+
+/* ============ NAV ============ */
+.nav{position:sticky;top:0;z-index:100;background:var(--nav-bg);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background .4s}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{width:42px;height:42px;border-radius:12px;background:var(--grad);display:grid;place-items:center;color:#fff;font-weight:800;font-size:17px;font-family:"Space Grotesk",sans-serif;box-shadow:0 6px 18px rgba(124,58,237,.35)}
+.brand-name{font-weight:800;font-size:17px;font-family:"Space Grotesk",sans-serif}
+.brand-tag{display:block;font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.4px}
+.nav-links{display:flex;align-items:center;gap:4px;list-style:none}
+.nav-links a{padding:9px 15px;border-radius:99px;font-size:14.5px;font-weight:600;color:var(--muted);transition:.25s}
+.nav-links a:hover{color:var(--text);background:var(--surface2)}
+.nav-links a.active{color:#fff;background:var(--grad);box-shadow:0 6px 16px rgba(79,70,229,.35)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.theme-btn{width:40px;height:40px;border-radius:12px;border:1px solid var(--border);background:var(--surface);cursor:pointer;font-size:17px;display:grid;place-items:center;transition:.25s}
+.theme-btn:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.nav-toggle{display:none;width:42px;height:42px;border-radius:12px;border:1px solid var(--border);background:var(--surface);cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.nav-toggle span{width:19px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+
+/* ============ PAGE HERO ============ */
+.page-head{position:relative;overflow:hidden;padding:88px 0 80px;border-bottom:1px solid var(--border)}
+.ph-bg{position:absolute;inset:0;pointer-events:none}
+.ph-bg .blob{position:absolute;border-radius:50%;filter:blur(80px);opacity:.28}
+.ph-bg .p1{width:480px;height:480px;background:#7c3aed;top:-200px;right:-120px;animation:drift 14s ease-in-out infinite alternate}
+.ph-bg .p2{width:420px;height:420px;background:#06b6d4;bottom:-220px;left:-140px;animation:drift 18s ease-in-out infinite alternate-reverse}
+.ph-bg .p3{width:280px;height:280px;background:#4f46e5;top:42%;left:46%;opacity:.2;animation:drift 22s linear infinite}
+@keyframes drift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(60px,-40px) scale(1.12)}}
+.crumb{font-size:12.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;position:relative}
+.page-head h1{font-size:clamp(36px,5.2vw,58px);font-weight:800;margin-bottom:14px;position:relative;line-height:1.08}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;background-size:200% 200%;animation:gradFlow 8s ease infinite}
+@keyframes gradFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+.page-head p{color:var(--muted);max-width:680px;font-size:17px;position:relative}
+
+/* ============ SECTION ============ */
+.section{padding:90px 0}
+.section-title{text-align:center;margin-bottom:54px}
+.overline{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:800;letter-spacing:2.4px;text-transform:uppercase;color:var(--a2);margin-bottom:14px}
+.overline::before{content:"";width:26px;height:3px;border-radius:3px;background:var(--grad)}
+.section h2{font-size:clamp(26px,3.4vw,38px);font-weight:800;margin-bottom:12px}
+.section-sub{color:var(--muted);max-width:680px;margin:0 auto}
+
+/* note pill */
+.note{display:flex;align-items:flex-start;gap:12px;max-width:760px;margin:0 auto 38px;padding:14px 18px;border-radius:14px;background:var(--grad-soft);border:1px solid color-mix(in srgb,var(--a1) 22%,transparent);font-size:13px;color:var(--muted);font-weight:500;line-height:1.55}
+.note .ic{width:22px;height:22px;border-radius:7px;display:grid;place-items:center;background:var(--grad);color:#fff;font-size:13px;flex-shrink:0;margin-top:1px}
+.note b{color:var(--text)}
+
+/* ============ PROGRESS BARS ============ */
+.bars-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:26px}
+.bar-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:24px 26px;transition:.3s;position:relative;overflow:hidden}
+.bar-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:color-mix(in srgb,var(--a1) 30%,transparent)}
+.bar-card::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:.5s}
+.bar-card:hover::before{transform:scaleX(1)}
+.bar-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px}
+.bar-name{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15.5px}
+.bar-dot{width:10px;height:10px;border-radius:50%;background:var(--grad);box-shadow:0 0 0 3px var(--grad-soft)}
+.bar-pct{font-family:"Space Grotesk",sans-serif;font-weight:700;font-size:14px;color:var(--a2);background:var(--grad-soft);padding:3px 10px;border-radius:99px;white-space:nowrap;min-width:54px;text-align:center}
+.bar-row{display:flex;align-items:center;justify-content:space-between;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--muted);margin-top:8px}
+.bar-level{color:var(--a2)}
+.bar-track{position:relative;width:100%;height:12px;background:var(--surface2);border-radius:99px;overflow:hidden;isolation:isolate}
+.bar-fill{position:absolute;inset:0;width:0%;border-radius:99px;background:var(--grad);transition:width 1.7s cubic-bezier(.2,.7,.3,1);z-index:1}
+.bar-fill::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.4) 50%,rgba(255,255,255,0) 100%);transform:translateX(-100%);animation:shine 2.6s ease-in-out infinite}
+@keyframes shine{0%{transform:translateX(-100%)}60%{transform:translateX(120%)}100%{transform:translateX(120%)}}
+.bar-card.in-view .bar-fill{ /* width set by data-attr */ }
+.bar-card.in-view.fail .bar-fill{ /* fallback */ }
+
+.bar-signal{font-size:12px;font-weight:600;color:var(--muted);margin-top:10px;font-style:italic}
+
+/* ============ TECH STACK GRID ============ */
+.stack-wrap{background:var(--surface);border:1px solid var(--border);border-radius:26px;padding:40px 36px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.stack-wrap::before{content:"";position:absolute;inset:0 0 auto 0;height:4px;background:var(--grad)}
+
+.stack-head{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:18px;margin-bottom:30px}
+.stack-head h3{font-size:22px;font-weight:800}
+.stack-head p{font-size:14px;color:var(--muted);max-width:520px}
+
+.stack-tabs{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:28px}
+.stab{padding:9px 16px;border-radius:99px;background:var(--surface2);border:1px solid var(--border);font-weight:700;font-size:13.5px;color:var(--muted);cursor:pointer;transition:.25s;font-family:inherit;display:inline-flex;align-items:center;gap:7px}
+.stab:hover{border-color:var(--a1);color:var(--a1);transform:translateY(-2px)}
+.stab.active{color:#fff;background:var(--grad);border-color:transparent;box-shadow:0 8px 22px rgba(79,70,229,.28)}
+.stab .ct{font-size:11px;opacity:.85;background:rgba(0,0,0,.1);padding:1px 7px;border-radius:99px;font-weight:800}
+.stab.active .ct{background:rgba(255,255,255,.28)}
+
+.stack-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.tech{position:relative;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px 14px;text-align:center;transition:.3s;cursor:default;overflow:hidden;--bcol:#7c3aed}
+.tech::before{content:"";position:absolute;inset:0 0 auto 0;height:3px;background:var(--bcol);transform:scaleX(0);transform-origin:left;transition:.4s}
+.tech:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg);border-color:transparent}
+.tech:hover::before{transform:scaleX(1)}
+.tech .logo{width:56px;height:56px;margin:0 auto 10px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-family:"Space Grotesk",sans-serif;font-size:22px;color:#fff;background:var(--bcol);box-shadow:0 8px 20px color-mix(in srgb,var(--bcol) 35%,transparent);transition:.3s}
+.tech:hover .logo{transform:scale(1.08) rotate(-6deg)}
+.tech h4{font-size:13.5px;font-weight:700;margin-bottom:2px;line-height:1.2}
+.tech .meta{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
+
+/* project tag on tech card */
+.tech .used{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:700;color:var(--bcol);background:color-mix(in srgb,var(--bcol) 14%,transparent);padding:3px 8px;border-radius:99px;letter-spacing:.3px}
+
+/* tech logos (colored SVG circles) — inline so no external resource needed */
+.tlogo{width:100%;height:100%;object-fit:contain;border-radius:12px;display:grid;place-items:center;color:#fff;font-weight:800;font-family:"Space Grotesk",sans-serif;font-size:20px}
+
+/* ============ SOFT SKILLS ============ */
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.soft{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;display:flex;align-items:center;gap:12px;font-weight:600;font-size:14.5px;transition:.3s}
+.soft:hover{transform:translateY(-3px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--a1) 40%,transparent)}
+.soft .ic{width:38px;height:38px;border-radius:10px;background:var(--grad-soft);display:grid;place-items:center;font-size:17px;flex-shrink:0}
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.7,.3,1),transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.in{opacity:1;transform:none}
+
+/* stacked aggregate stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:0 auto 50px;max-width:880px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;text-align:center;transition:.3s}
+.stat:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--a1) 40%,transparent)}
+.stat b{display:block;font-family:"Space Grotesk",sans-serif;font-size:34px;font-weight:800;background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.stat span{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-top:4px;display:block}
+
+/* ============ FOOTER + common ============ */
+footer{border-top:1px solid var(--border);padding:42px 0 34px;background:var(--surface)}
+.foot-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px}
+.foot-social{display:flex;gap:10px}
+.icon-btn{width:42px;height:42px;border-radius:12px;background:var(--surface);border:1px solid var(--border);display:inline-grid;place-items:center;transition:.25s}
+.icon-btn:hover{transform:translateY(-3px);border-color:var(--a1);color:var(--a1);box-shadow:var(--shadow)}
+.icon-btn svg{width:18px;height:18px}
+.foot-note{font-size:13.5px;color:var(--muted)}
+
+@media(max-width:980px){
+ .stack-grid{grid-template-columns:repeat(4,1fr)}
+ .bars-grid{grid-template-columns:1fr}
+ .stats{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:640px){
+ .nav-toggle{display:flex}
+ .nav-links{position:fixed;inset:68px 0 auto 0;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--border);padding:16px 20px 22px;gap:6px;display:none}
+ .nav-links.open{display:flex}
+ .nav-links a{width:100%;text-align:left;padding:12px 16px}
+ .stack-grid{grid-template-columns:repeat(3,1fr)}
+ .grid-3{grid-template-columns:1fr 1fr}
+ .section{padding:60px 0}
+ .foot-in{justify-content:center;text-align:center}
+}
+
+/* REDUCED MOTION */
+@media(prefers-reduced-motion:reduce){
+ *{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+ .bar-fill{transition:none!important}
+ .tech, .soft, .bar-card{transition:none!important}
+ .grad-text{animation:none!important;background-position:0% 50%}
+}
+
+/* OFFLINE / NO-JS FALLBACK: bars render at full width, no transitions */
+.no-js .bar-fill{transition:none!important}
+</style>
+</head>
+<body class="">
+<noscript><style>.bar-fill{width:var(--w,80%)!important;transition:none!important}.tech,.soft,.stat,.bar-card{opacity:1!important;transform:none!important}</style></noscript>
+
+<nav class="nav">
+  <div class="container nav-in">
+    <a class="brand" href="index.html">
+      <div class="brand-mark">AG</div>
+      <div><span class="brand-name">Ariyan Ghosh</span><span class="brand-tag">AI & ML Student · Full-Stack Developer</span></div>
+    </a>
+    <ul class="nav-links" data-nav-menu>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="skills.html" class="active">Skills</a></li>
+      <li><a href="resume.html">Resume</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-btn" data-theme-btn aria-label="Toggle theme"></button>
+      <button class="nav-toggle" data-nav-toggle aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-head">
+  <div class="ph-bg" aria-hidden="true"><span class="blob p1"></span><span class="blob p2"></span><span class="blob p3"></span></div>
+  <div class="container">
+    <div class="crumb">Home / Skills</div>
+    <h1>My <span class="grad-text">skills &amp; tech stack</span></h1>
+    <p>A snapshot of every tool, language and framework from my résumé — grouped by category, derived from real project and certification signals.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container">
+
+    <div class="stats reveal">
+      <div class="stat"><b>5</b><span>Languages</span></div>
+      <div class="stat"><b>5</b><span>Frameworks &amp; UI</span></div>
+      <div class="stat"><b>2</b><span>Databases</span></div>
+      <div class="stat"><b>4+</b><span>AI/ML Areas</span></div>
+    </div>
+
+    <!-- ============ PROGRESS BARS ============ -->
+    <div class="section-title reveal">
+      <span class="overline">Proficiency by Category</span>
+      <h2>Animated progress bars</h2>
+      <p class="section-sub">Each level reflects how the skill appears on the résumé — whether it was used in a named project, certified via Google, or listed as "Basics".</p>
+    </div>
+
+    <div class="note reveal">
+      <span class="ic">i</span>
+      <span><b>How levels are derived.</b> Bars are <b>CV-derived</b>, not self-reported through tests. Anything labelled <b>"Basics"</b> on the résumé is capped at ~60%. Anything <b>implemented in a named project</b> is set ≥80%. Google-certified skills are set ≥85%. A small weighting margin is allowed for tool mastery.</span>
+    </div>
+
+    <div class="bars-grid" data-bars>
+
+      <!-- ===== Languages ===== -->
+      <article class="bar-card reveal" data-cat="lang" data-level="88" data-signal="Primary in academic full-stack projects">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Java</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Used as a primary language across academic full-stack projects.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="lang" data-level="82" data-signal="Primary in AI/ML coursework">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Python</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Primary language for AI/ML coursework and tooling.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="lang" data-level="85" data-signal="Primary in Campus Connect (React.js + Generative AI)">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>JavaScript</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Primary language in Campus Connect (React.js frontend).</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="lang" data-level="86" data-signal="Web UI across all four projects">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>HTML5 &amp; CSS3</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Used for responsive UIs across all four major projects.</div>
+      </article>
+
+      <!-- ===== Frameworks & UI ===== -->
+      <article class="bar-card reveal" data-cat="framework" data-level="92" data-signal="Frontend stack of Campus Connect">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>React.js</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Frontend stack of Campus Connect — actively shipping.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="framework" data-level="55" data-signal="Réservé explicitly as Basics">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Next.js</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Basics</span></div>
+        <div class="bar-signal">Résumé explicitly states "Next.js (Basics)".</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="framework" data-level="84" data-signal="GuardianX responsive UI">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Responsive Design</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">"Designed accessible, responsive UI components" — GuardianX.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="framework" data-level="62" data-signal="UI prototyping">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Figma</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Intermediate</span></div>
+        <div class="bar-signal">UI prototyping &amp; design handoff.</div>
+      </article>
+
+      <!-- ===== Databases ===== -->
+      <article class="bar-card reveal" data-cat="db" data-level="82" data-signal="Schema &amp; backend in Database Handler (Library Management System)">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>MySQL</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">"Implemented structured MySQL schema and backend connectivity" — Database Handler.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="db" data-level="60" data-signal="Réservé explicitly as Basics">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Firebase</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Basics</span></div>
+        <div class="bar-signal">Résumé explicitly states "Firebase (Basics)" — used as Campus Connect backend.</div>
+      </article>
+
+      <!-- ===== AI / ML ===== -->
+      <article class="bar-card reveal" data-cat="ai" data-level="86" data-signal="Personalised recommendations in Campus Connect">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Generative AI</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">"Integrating Generative AI for personalised recommendations" — Campus Connect.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="ai" data-level="88" data-signal="Embedded in Campus Connect architecture">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>AI Integration</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Embedded across the AI-driven suggestions architecture of Campus Connect.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="ai" data-level="90" data-signal="Google AI Essentials Specialization (Art of Prompting)">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Prompt Engineering</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Certified through Google AI Essentials — "Art of Prompting".</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="ai" data-level="78" data-signal="Google AI Essentials (Intro to AI, AI Tools)">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>AI Tools</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Intermediate</span></div>
+        <div class="bar-signal">Certified through Google AI Essentials — "Intro to AI", "AI Tools".</div>
+      </article>
+
+      <!-- ===== Tools & Workflow ===== -->
+      <article class="bar-card reveal" data-cat="tool" data-level="86" data-signal="Public repos and project commits">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Git &amp; GitHub</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Two public repos live on github.com/hyperaru420.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="tool" data-level="92" data-signal="Daily driver across all projects">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>VS Code</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Daily driver across all four major projects and coursework.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="tool" data-level="58" data-signal="Visual presentation tooling">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Canva</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Intermediate</span></div>
+        <div class="bar-signal">Used for visual presentation and design assets.</div>
+      </article>
+
+      <!-- ===== Core CS ===== -->
+      <article class="bar-card reveal" data-cat="core" data-level="86" data-signal="B.Tech Computer Science foundation">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Data Structures &amp; Algorithms</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Core CS coursework + Algo projects (e.g. Sudoku backtracking).</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="core" data-level="88" data-signal="Applied across full-stack project design">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Object-Oriented Programming</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Applied across the architecture of Campus Connect and other projects.</div>
+      </article>
+
+      <article class="bar-card reveal" data-cat="core" data-level="90" data-signal="Google PM Capstone + Job Search with AI certified">
+        <div class="bar-head"><div class="bar-name"><span class="bar-dot"></span>Problem Solving</div><span class="bar-pct" data-pct>0%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-fill></div></div>
+        <div class="bar-row"><span>Proficiency</span><span class="bar-level">Advanced</span></div>
+        <div class="bar-signal">Certified via Google PM Professional Certificate (Capstone, Job Search with AI).</div>
+      </article>
+
+    </div>
+
+    <!-- ============ TECH STACK GRID ============ -->
+    <div class="section-title reveal" style="margin-top:88px">
+      <span class="overline">Tech Stack</span>
+      <h2>The tools I ship with</h2>
+      <p class="section-sub">Every entry below comes from the résumé. Filter by category — and click any tile for the project where it's used.</p>
+    </div>
+
+    <div class="stack-wrap reveal">
+      <div class="stack-head">
+        <div>
+          <h3>Tech Stack</h3>
+          <p>Numerical counts per category are dynamic and reflect the current filter.</p>
+        </div>
+      </div>
+
+      <div class="stack-tabs" data-st-tabs>
+        <button class="stab active" data-filter="all">🧰 All <span class="ct" data-count="all">16</span></button>
+        <button class="stab" data-filter="lang">💻 Languages <span class="ct">5</span></button>
+        <button class="stab" data-filter="framework">⚛️ Frameworks <span class="ct">4</span></button>
+        <button class="stab" data-filter="db">🗄️ Databases <span class="ct">2</span></button>
+        <button class="stab" data-filter="ai">🧠 AI / ML <span class="ct">4</span></button>
+        <button class="stab" data-filter="tool">🔧 Tools <span class="ct">4</span></button>
+        <button class="stab" data-filter="core">📐 Core CS <span class="ct">3</span></button>
+      </div>
+
+      <div class="stack-grid" data-stack>
+
+        <div class="tech" data-cat="lang" style="--bcol:#f89820" data-name="Java">
+          <div class="logo tlogo">J</div>
+          <h4>Java</h4><div class="meta">Language</div>
+          <span class="used">Academic projects</span>
+        </div>
+
+        <div class="tech" data-cat="lang" style="--bcol:#3776ab" data-name="Python">
+          <div class="logo tlogo">Py</div>
+          <h4>Python</h4><div class="meta">Language</div>
+          <span class="used">AI / ML coursework</span>
+        </div>
+
+        <div class="tech" data-cat="lang" style="--bcol:#f7df1e;color:#1a1a1a" data-name="JavaScript">
+          <div class="logo tlogo" style="color:#1a1a1e;background:#f7df1e">JS</div>
+          <h4>JavaScript</h4><div class="meta">Language</div>
+          <span class="used">Campus Connect</span>
+        </div>
+
+        <div class="tech" data-cat="lang" style="--bcol:#e34c26" data-name="HTML5">
+          <div class="logo tlogo">&lt;/&gt;</div>
+          <h4>HTML5</h4><div class="meta">Markup</div>
+          <span class="used">All 4 projects</span>
+        </div>
+
+        <div class="tech" data-cat="lang" style="--bcol:#2965f1" data-name="CSS3">
+          <div class="logo tlogo">CSS</div>
+          <h4>CSS3</h4><div class="meta">Styling</div>
+          <span class="used">Responsive UI</span>
+        </div>
+
+        <div class="tech" data-cat="framework" style="--bcol:#61dafb" data-name="React.js">
+          <div class="logo tlogo" style="background:#0b1220;color:#61dafb">⚛</div>
+          <h4>React.js</h4><div class="meta">Framework</div>
+          <span class="used">Campus Connect frontend</span>
+        </div>
+
+        <div class="tech" data-cat="framework" style="--bcol:#0b1220" data-name="Next.js">
+          <div class="logo tlogo">▲</div>
+          <h4>Next.js</h4><div class="meta">Framework</div>
+          <span class="used">Basics</span>
+        </div>
+
+        <div class="tech" data-cat="framework" style="--bcol:#7c3aed" data-name="Responsive Design">
+          <div class="logo tlogo">📱</div>
+          <h4>Responsive Design</h4><div class="meta">Skill</div>
+          <span class="used">GuardianX UI</span>
+        </div>
+
+        <div class="tech" data-cat="framework" style="--bcol:#a259ff" data-name="Figma">
+          <div class="logo tlogo">F</div>
+          <h4>Figma</h4><div class="meta">Design</div>
+          <span class="used">UI prototyping</span>
+        </div>
+
+        <div class="tech" data-cat="db" style="--bcol:#00758f" data-name="MySQL">
+          <div class="logo tlogo">SQL</div>
+          <h4>MySQL</h4><div class="meta">Database</div>
+          <span class="used">Database Handler</span>
+        </div>
+
+        <div class="tech" data-cat="db" style="--bcol:#ffca28;color:#1a1a1a" data-name="Firebase">
+          <div class="logo tlogo" style="background:#ffca28;color:#1a1a1e">🔥</div>
+          <h4>Firebase</h4><div class="meta">Database</div>
+          <span class="used">Campus Connect backend</span>
+        </div>
+
+        <div class="tech" data-cat="ai" style="--bcol:#7c3aed" data-name="Generative AI">
+          <div class="logo tlogo">✨</div>
+          <h4>Generative AI</h4><div class="meta">AI / ML</div>
+          <span class="used">Campus Connect recommender</span>
+        </div>
+
+        <div class="tech" data-cat="ai" style="--bcol:#4f46e5" data-name="AI Integration">
+          <div class="logo tlogo">🤖</div>
+          <h4>AI Integration</h4><div class="meta">AI / ML</div>
+          <span class="used">Project architecture</span>
+        </div>
+
+        <div class="tech" data-cat="ai" style="--bcol:#06b6d4" data-name="Prompt Engineering">
+          <div class="logo tlogo">💬</div>
+          <h4>Prompt Engineering</h4><div class="meta">AI / ML</div>
+          <span class="used">Google AI Essentials certified</span>
+        </div>
+
+        <div class="tech" data-cat="ai" style="--bcol:#0891b2" data-name="AI Tools">
+          <div class="logo tlogo">🧰</div>
+          <h4>AI Tools</h4><div class="meta">AI / ML</div>
+          <span class="used">Google AI Essentials</span>
+        </div>
+
+        <div class="tech" data-cat="tool" style="--bcol:#181717" data-name="Git &amp; GitHub">
+          <div class="logo tlogo" style="background:#181717">Git</div>
+          <h4>Git &amp; GitHub</h4><div class="meta">Tools</div>
+          <span class="used">Public repos</span>
+        </div>
+
+        <div class="tech" data-cat="tool" style="--bcol:#007acc" data-name="VS Code">
+          <div class="logo tlogo">{ }</div>
+          <h4>VS Code</h4><div class="meta">Editor</div>
+          <span class="used">Daily driver</span>
+        </div>
+
+        <div class="tech" data-cat="tool" style="--bcol:#7c3aed" data-name="Canva">
+          <div class="logo tlogo">🎨</div>
+          <h4>Canva</h4><div class="meta">Visual</div>
+          <span class="used">Design assets</span>
+        </div>
+
+        <div class="tech" data-cat="core" style="--bcol:#4f46e5" data-name="Data Structures &amp; Algorithms">
+          <div class="logo tlogo">Σ</div>
+          <h4>DSA</h4><div class="meta">Core CS</div>
+          <span class="used">Backtracking (Sudoku)</span>
+        </div>
+
+        <div class="tech" data-cat="core" style="--bcol:#06b6d4" data-name="OOP">
+          <div class="logo tlogo">OOP</div>
+          <h4>OOP</h4><div class="meta">Core CS</div>
+          <span class="used">Project architecture</span>
+        </div>
+
+        <div class="tech" data-cat="core" style="--bcol:#7c3aed" data-name="Problem Solving">
+          <div class="logo tlogo">🧩</div>
+          <h4>Problem Solving</h4><div class="meta">Core CS</div>
+          <span class="used">Google PM certified</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ============ SOFT SKILLS ============ -->
+    <div class="section-title reveal" style="margin-top:88px">
+      <span class="overline">Beyond Code</span>
+      <h2>Soft skills</h2>
+      <p class="section-sub">Verbatim from the résumé's "Soft Skills" section.</p>
+    </div>
+    <div class="grid-3 reveal">
+      <div class="soft"><span class="ic">🗣️</span>Effective Communication</div>
+      <div class="soft"><span class="ic">🤝</span>Team Collaboration</div>
+      <div class="soft"><span class="ic">🔄</span>Adaptability</div>
+      <div class="soft"><span class="ic">⏱️</span>Time Management</div>
+      <div class="soft"><span class="ic">⚡</span>Quick Learner</div>
+      <div class="soft"><span class="ic">🧩</span>Problem-Solving Mindset</div>
+      <div class="soft" style="grid-column:span 1"><span class="ic">💡</span>Creative Thinking</div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container foot-in">
+    <div class="foot-note">© <span id="yr"></span> Ariyan Ghosh · Bengaluru, Karnataka, India</div>
+    <div class="foot-social">
+      <a class="icon-btn" href="https://github.com/hyperaru420" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55v-2.15c-3.2.7-3.87-1.36-3.87-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.03 1.75 2.69 1.25 3.34.95.1-.74.4-1.25.72-1.54-2.55-.29-5.23-1.28-5.23-5.68 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.15 1.18a10.9 10.9 0 0 1 5.74 0c2.19-1.49 3.15-1.18 3.15-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.41-2.69 5.38-5.25 5.66.41.36.78 1.05.78 2.13v3.16c0 .3.21.67.8.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg></a>
+      <a class="icon-btn" href="https://www.linkedin.com/in/ariyan-ghosh-25a20g30r" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/></svg></a>
+      <a class="icon-btn" href="mailto:ariyanghosh009@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// =========== Theme ===========
+const root=document.documentElement, saved=localStorage.getItem('theme')||'light';
+root.setAttribute('data-theme',saved);
+const setIcons=()=>{document.querySelectorAll('[data-theme-btn]').forEach(b=>b.textContent=root.getAttribute('data-theme')==='dark'?'☀️':'🌙')};
+setIcons();
+document.addEventListener('click',e=>{const t=e.target.closest('[data-theme-btn]');if(!t)return;const nx=root.getAttribute('data-theme')==='dark'?'light':'dark';root.setAttribute('data-theme',nx);localStorage.setItem('theme',nx);setIcons();});
+
+// =========== Mobile nav ===========
+const tg=document.querySelector('[data-nav-toggle]'),mn=document.querySelector('[data-nav-menu]');
+if(tg&&mn)tg.addEventListener('click',()=>mn.classList.toggle('open'));
+
+// =========== Footer year ===========
+const yr=document.getElementById('yr');if(yr)yr.textContent=new Date().getFullYear();
+
+// =========== Animated progress bars via IntersectionObserver ===========
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const fillBar=(card)=>{
+ if(!card||card.dataset.filled==='1')return;
+ card.dataset.filled='1';
+ const lvl=parseInt(card.dataset.level||'80',10);
+ const fill=card.querySelector('[data-fill]');
+ const pct=card.querySelector('[data-pct]');
+ // ease
+ const start=performance.now(),dur=1600;
+ const tick=(t)=>{
+  const p=Math.min(1,(t-start)/dur);
+  // easeOutQuint
+  const e=1-Math.pow(1-p,5);
+  const v=Math.round(lvl*e);
+  if(fill)fill.style.width=v+'%';
+  if(pct)pct.textContent=v+'%';
+  if(p<1)requestAnimationFrame(tick);
+  else{ if(fill)fill.style.width=lvl+'%'; if(pct)pct.textContent=lvl+'%'; }
+ };
+ requestAnimationFrame(tick);
+};
+
+const barIO=new IntersectionObserver(es=>{
+ es.forEach(en=>{
+  if(en.isIntersecting){
+   fillBar(en.target);
+  }
+ });
+},{threshold:.35,rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('[data-bars] .bar-card').forEach(c=>{
+ if(reduced){
+  c.dataset.filled='1';
+  const lvl=parseInt(c.dataset.level||'80',10);
+  c.querySelector('[data-fill]').style.width=lvl+'%';
+  c.querySelector('[data-pct]').textContent=lvl+'%';
+  return;
+ }
+ barIO.observe(c);
+});
+
+// =========== Stack filter ===========
+const tabs=document.querySelector('[data-st-tabs]');
+if(tabs){
+ tabs.addEventListener('click',e=>{
+  const b=e.target.closest('.stab');if(!b)return;
+  tabs.querySelectorAll('.stab').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  const f=b.dataset.filter;
+  let visible=0;
+  document.querySelectorAll('[data-stack] .tech').forEach(t=>{
+   const show=(f==='all'||t.dataset.cat===f);
+   t.style.display=show?'':'none';
+   if(show)visible++;
+  });
+  const countEl=tabs.querySelector(`[data-count="${f}"]`);
+  if(countEl)countEl.textContent=visible;
+  // also update All
+  const allEl=tabs.querySelector('[data-count="all"]');
+  if(allEl&&f!=='all'){
+   let total=0;
+   document.querySelectorAll('[data-stack] .tech').forEach(t=>{if(t.style.display!=='none')total++});
+   // we still want ALL total = 21, not filtered subset
+   allEl.textContent=document.querySelectorAll('[data-stack] .tech').length;
+  }
+ });
+}
+
+// =========== Reveal on scroll ===========
+const genIO=new IntersectionObserver(es=>es.forEach(en=>{
+ if(en.isIntersecting){en.target.classList.add('in');genIO.unobserve(en.target)}
+}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>genIO.observe(el));
+</script>
+</body>
+</html>
